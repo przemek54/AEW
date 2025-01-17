@@ -14,7 +14,7 @@ header:
   const key = '2pKrRlMUVfiXfK8o5mZ1';
   const map = L.map('map').setView([0, 0], 1);
   const mtLayer = L.maptiler.maptilerLayer({
-    apiKey: key,
-    style: L.maptiler."be8ac94f-1688-4953-8a21-4c4d23b177d5", // Replace with your style ID if needed
-  }).addTo(map);
+  apiKey: key,
+  style: "be8ac94f-1688-4953-8a21-4c4d23b177d5"
+}).addTo(map);
 </script>
