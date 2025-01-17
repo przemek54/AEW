@@ -5,16 +5,16 @@ header:
 
   - titles:
       en: Map
-    url: /map.md
+    url: /map.html
 
   - titles:
       en: Script
-    url: /script.md
+    url: /script.html
 
   - titles:
       en: FAQ
-    url: /faq.md
+    url: /faq.html
 
   - titles:
       en: About
-    url: /about.md
+    url: /about.html
