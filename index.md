@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Page - Article Header Overlay Background Image (Immersive + Translucent Header)
+title: Welcome to the official AEW Hub!
 mode: immersive
 header:
   theme: dark
@@ -13,49 +13,43 @@ article_header:
     src: /assets/background-1.png
 ---
 
-![TeXt Theme](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/TeXt-home.jpg)
+![AEW Logo](https://raw.githubusercontent.com/przemek54/AEW/master/logo.png)
+<p  align="center">by <b>54</b></p>
 
-TeXt is a super customizable Jekyll theme for personal site, team site, blog, project, documentation, etc. Similar to iOS 11 style, it has large and prominent titles, round buttons and cards.
+**[An Easy World](https://www.geoguessr.com/maps/66ca6b77095a4f41baf80ece)** is a Geoguessr map intended to help players learn faster. Despite the name, it's not *too* easy, depending on where you set your standards. Don’t anticipate free 5ks being handed out left and right – instead, expect to see a clue in each location and aim to get the country right every time. And the region, whenever you can.
 
-```javascript
-(() => console.log('Hello, World!'))();
-```
+## Skill level
+The goal of the map is to be:
+- **approachable for beginners**, who may use it to differentiate between countries;
+- **challenging for intermediate players**, who will usually know the country, but are encouraged to region-guess within it;
+- **relaxing for advanced players**, who may use it for laid-back gameplay or solidifying their knowledge.
 
-## Features
+## Map
+An Easy World (AEW) serves as an unofficial extension of the **[PlonkIt guide](https://www.plonkit.net/)**, with every meta on the website being represented in the map by at least 5 locations. It is intended for **NMPZ**, but you can play it any way you like. Some locations might be too easy if you allow yourself to turn around.
 
-- Responsive
-- Semantic HTML
-- Skins
-- Highlight Theme
-- Internationalization
-- Search
-- Table of contents
-- Authors
-- Additional styles (alert, tag, image, icon, button, grid, etc)
-- Extensions (audios, videos, slides, demos)
-- Markdown enhancements ([MathJax](https://www.mathjax.org/), [mermaid](https://mermaidjs.github.io/), [chartjs](http://www.chartjs.org/))
-- Sharing ([AddToAny](https://www.addtoany.com/), [AddThis](https://www.addthis.com/))
-- Comments ([Disqus](https://disqus.com/), [Gitalk](https://gitalk.github.io/), [Valine](https://valine.js.org/en/))
-- Pageview ([LeanCloud](https://leancloud.cn/))
-- Analytics ([Google Analytics](https://analytics.google.com/analytics/web/))
-- RSS ([jekyll-feed](https://github.com/jekyll/jekyll-feed))
+![Gameplay image](https://raw.githubusercontent.com/przemek54/AEW/master/assets/gameplay-image.png)
 
-## Skins
+As of version 0.3.1, the map contains 2,325 locations across 1 continent. For more detailed statistics and current progress, visit the Map page.
 
-TeXt has 6 built-in skins, you can also set up your own skin.
+**[Play the map here!](https://www.geoguessr.com/maps/66ca6b77095a4f41baf80ece)**
 
-| `default` | `dark` | `forest` |
-| --- |  --- | --- |
-| ![Default](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/skins_default.jpg) | ![Dark](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/skins_dark.jpg) | ![Forest](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/skins_forest.jpg) |
+## Script
+AEW features a script that provides **real-time hints** for each location and it accounts for all clues visible to you. They are sorted by continent, country and region, so that you can view them at your own pace for narrowing down your guesses.
 
-| `ocean` | `chocolate` | `orange` |
-| --- |  --- | --- |
-| ![Ocean](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/skins_ocean.jpg) | ![Chocolate](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/skins_chocolate.jpg) | ![Orange](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/skins_orange.jpg) |
+![Script functionality](https://raw.githubusercontent.com/przemek54/AEW/master/assets/gif-1.gif)
 
-### Highlight Theme
+The core functionality of the script is **Reveal Mode**, which allows you to show or hide place names and images for a more fun learning experience. It encourages you to think closely about the round before you're given the final answer.
 
-TeXt use [Tomorrow](https://github.com/chriskempson/tomorrow-theme) as the highlight theme.
+![Reveal Mode](https://raw.githubusercontent.com/przemek54/AEW/master/assets/gif-2.gif)
 
-| `tomorrow` | `tomorrow-night` | `tomorrow-night-eighties` | `tomorrow-night-blue` | `tomorrow-night-bright` |
-| --- |  --- | --- | --- |  --- |
-| ![Tomorrow](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/highlight_tomorrow.png) | ![Tomorrow Night](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/highlight_tomorrow-night.png) | ![Tomorrow Night Eighties](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/highlight_tomorrow-night-eighties.png) | ![Tomorrow Night Blue](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/highlight_tomorrow-night-blue.png) | ![Tomorrow Night Bright](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/highlight_tomorrow-night-bright.png) |
+The script only works on AEW and **should only be used in NMPZ**. Moving breaks it completely because it can't fetch the correct location, and panning results in an incomplete experience because not all clues available to you are displayed as hints.
+
+For a more detailed explanation of the script's functions, an installation guide and basic trouble shooting, go to the Script page. More technical information related to the script itself (public API, script changelog) can be found in the **[GitHub repository](https://github.com/przemek54/an-easy-world)**. I encourage any feedback through issues or pull requests.
+
+## Other resources
+There are a few projects with a similar premise that I highly recommend you try out:
+* **[LearnableMeta](https://learnablemeta.com/)** by **trausi** – if you like AEW, you'll *love* LearnableMeta. It's a massive project that also features a script with hints (by **plurk**), a variety of maps for different regions and countries, as well as a tool for creating maps designed for their script with a community of creators. There are countless maps like AEW over there, so get lost in exploration!
+
+* Official **[PlonkIt](https://www.plonkit.net/guide)** maps by **the PlonkIt team** – most guides contain a section with learning resources in the bottom, which contain clues described in the document. You might want to try these for more condensed practice, especially fresh after reading a guide. They also include maps made by other authors, so it can be a great place to learn straight from the experts.
+
+* **[Regionguessing Meta Library](https://docs.google.com/spreadsheets/d/1UNvkoY-LaktF75nU_cP7-wVRAEvH3fSqVZet20HqxXA/edit?gid=1650999349#gid=1650999349)** by **Lupus** – AEW contains only clues present on PlonkIt. If your heart yearns for more metas, this collection might be right up your alley. It contains anything from maps, to infographics shared on Discord, to hundreds-of-pages-long documents about specific countries.
