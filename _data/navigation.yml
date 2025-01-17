@@ -2,19 +2,15 @@ header:
   - titles:
       en: Home
     url: /index.html
-
   - titles:
       en: Map
     url: /map.html
-
   - titles:
       en: Script
     url: /script.html
-
   - titles:
       en: FAQ
     url: /faq.html
-
   - titles:
       en: About
     url: /about.html
