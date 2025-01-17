@@ -1,5 +1,5 @@
 ---
-layout: article
+layout: landing
 titles:
   # @start locale config
   en      : &EN       About
