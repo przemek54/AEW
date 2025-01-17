@@ -1,30 +1,20 @@
 header:
   - titles:
-      # @start locale config
-      en      : Home
-      # @end locale config
+      en: Home
     url: /index.html
 
-    - titles:
-      # @start locale config
-      en      : Map
-      # @end locale config
+  - titles:
+      en: Map
     url: /map.md
 
-    - titles:
-      # @start locale config
-      en      : Script
-      # @end locale config
+  - titles:
+      en: Script
     url: /script.md
 
-    - titles:
-      # @start locale config
-      en      : FAQ
-      # @end locale config
+  - titles:
+      en: FAQ
     url: /faq.md
 
-    - titles:
-      # @start locale config
-      en      : About
-      # @end locale config
+  - titles:
+      en: About
     url: /about.md
