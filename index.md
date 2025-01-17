@@ -13,7 +13,7 @@ article_header:
     src: /assets/background-1.png
 ---
 
-![AEW Logo](https://raw.githubusercontent.com/przemek54/AEW/master/logo.png)
+<img src="https://raw.githubusercontent.com/przemek54/AEW/master/logo.png" alt="AEW Logo" width="500">
 <p  align="center">by <b>54</b></p>
 
 **[An Easy World](https://www.geoguessr.com/maps/66ca6b77095a4f41baf80ece)** is a Geoguessr map intended to help players learn faster. Despite the name, it's not *too* easy, depending on where you set your standards. Don’t anticipate free 5ks being handed out left and right – instead, expect to see a clue in each location and aim to get the country right every time. And the region, whenever you can.
@@ -44,7 +44,7 @@ The core functionality of the script is **Reveal Mode**, which allows you to sho
 
 The script only works on AEW and **should only be used in NMPZ**. Moving breaks it completely because it can't fetch the correct location, and panning results in an incomplete experience because not all clues available to you are displayed as hints.
 
-For a more detailed explanation of the script's functions, an installation guide and basic trouble shooting, go to the Script page. More technical information related to the script itself (public API, script changelog) can be found in the **[GitHub repository](https://github.com/przemek54/an-easy-world)**. I encourage any feedback through issues or pull requests.
+For a more detailed explanation of the script's functions, an installation guide and basic troubleshooting, go to the Script page. More technical information related to the script itself (public API, changelog) can be found in the **[GitHub repository](https://github.com/przemek54/an-easy-world)**. I encourage any feedback through issues or pull requests.
 
 ## Other resources
 There are a few projects with a similar premise that I highly recommend you try out:
