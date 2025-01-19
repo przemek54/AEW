@@ -111,8 +111,11 @@ header:
           '#CCCCCC', // Default color if no match
         ]);
 
+        // Log the filter being applied
+        console.log("Applying filter to centroids layer:", ['in', ['get', 'name'], ...progressData.filter(({InGeoGuessr}) => InGeoGuessr === 1).map(({name}) => name)]);
+
         // Set visibility based on InGeoGuessr
-        map.setFilter('centroids', ['==', ['get', 'InGeoGuessr'], 1]);
+        map.setFilter('centroids', ['in', ['get', 'name'], ...progressData.filter(({InGeoGuessr}) => InGeoGuessr === 1).map(({name}) => name)]);
       } else {
         console.error("Layer 'centroids' not found in the style.");
       }
