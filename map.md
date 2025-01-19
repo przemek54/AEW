@@ -76,7 +76,7 @@ header:
       zoom: 2
     });
 
-    const applyStyles = () = {
+    const applyStyles = () => {
       // Check if the layer exists in the style
       if (map.getLayer('countries-2ebq5h')) {
         // Dynamically set paint properties for the layer
