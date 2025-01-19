@@ -72,6 +72,8 @@ header:
       "Not started": "#FF0000"
     };
 
+    console.log(progressData);
+
     map.on('load', () => {
       // Check if the layer exists in the style
       if (map.getLayer('countries-2ebq5h')) {
