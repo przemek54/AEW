@@ -118,10 +118,10 @@ header:
       // Set visibility based on InGeoGuessr
       map.setFilter('centroids', ['in', ['get', 'name'], ["literal", centroidNames]]);
     } else {
-      console.error("Layer 'centroids' not found in the style.");
-    }
+        console.error("Layer 'centroids' not found in the style.");
+      }
+    });
 
     map.on('load', applyStyles);
     map.on('styledata', applyStyles);
-  });
 </script>
