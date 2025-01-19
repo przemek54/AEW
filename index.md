@@ -13,7 +13,7 @@ article_header:
     src: /assets/background-1.png
 ---
 
-<img src="https://raw.githubusercontent.com/przemek54/AEW/master/logo.png" alt="AEW Logo" width="500">
+<p align="center"><img src="https://raw.githubusercontent.com/przemek54/AEW/master/logo.png" alt="AEW Logo" width="500"></p>
 <p  align="center">by <b>54</b></p>
 
 **[An Easy World](https://www.geoguessr.com/maps/66ca6b77095a4f41baf80ece)** is a Geoguessr map intended to help players learn faster. Despite the name, it's not *too* easy, depending on where you set your standards. Don’t anticipate free 5ks being handed out left and right – instead, expect to see a clue in each location and aim to get the country right every time. And the region, whenever you can.
