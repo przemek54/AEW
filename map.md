@@ -36,13 +36,13 @@ header:
 
   map.on('load', () => {
     map.addLayer({
-      id: 'countries',
+      id: 'countries-2ebq5h',
       type: 'fill',
       source: {
         type: 'vector',
         url: 'mapbox://przemek54.c6bv078c'
       },
-      'source-layer': 'your-layer-name',
+      'source-layer': 'countries',
       paint: {
         'fill-color': [
           'match',
