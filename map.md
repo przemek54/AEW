@@ -81,7 +81,7 @@ header:
         map.setPaintProperty('countries-2ebq5h', 'fill-color', [
           'match',
           ['get', 'name'], // Match the 'name' property in the tileset
-          ...progressData.flatMap(({ name, Progress, InGeoGuessr }) =>
+          ...progressData.flatMap(({ Country, Progress, InGeoGuessr }) =>
             InGeoGuessr === 0
               ? [name, '#CCCCCC'] // Gray for 'InGeoGuessr: 0'
               : [name, progressColors[Progress]]
