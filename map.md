@@ -111,16 +111,15 @@ header:
           '#CCCCCC', // Default color if no match
         ]);
 
-        // Log the filter being applied
-        const centroidNames = progressData.filter(({InGeoGuessr}) => InGeoGuessr === 1).map(({name}) => name);
-        console.log("Applying filter to centroids layer:", ['in', ['get', 'name'], ...centroidNames]);
+      // Log the filter being applied
+      const centroidNames = progressData.filter(({InGeoGuessr}) => InGeoGuessr === 1).map(({name}) => name);
+      console.log("Applying filter to centroids layer:", ['in', ['get', 'name'], ["literal", centroidNames]]);
 
-        // Set visibility based on InGeoGuessr
-        map.setFilter('centroids', ['in', ['get', 'name'], centroidNames]);
-      } else {
-        console.error("Layer 'centroids' not found in the style.");
-      }
-    };
+      // Set visibility based on InGeoGuessr
+      map.setFilter('centroids', ['in', ['get', 'name'], ["literal", centroidNames]]);
+    } else {
+      console.error("Layer 'centroids' not found in the style.");
+    }
 
     map.on('load', applyStyles);
     map.on('styledata', applyStyles);
