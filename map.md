@@ -68,8 +68,10 @@ header:
 
     const progressColors = {
       "Not applicable": "#CCCCCC",
-      "Finished": "#008000",
-      "Not started": "#FF0000"
+      "Finished": "#9de3af",
+      "Outdated": "#c8e3cf",
+      "In progress": "#eddf9a",
+      "Not started": "#e39d9d"
     };
 
     console.log(progressData);
@@ -90,6 +92,25 @@ header:
         ]);
       } else {
         console.error("Layer 'countries-2ebq5h' not found in the style.");
+      }
+
+      if (map.getLayer('centroids')) {
+        // Dynamically set paint properties for the centroids layer
+        map.setPaintProperty('centroids', 'circle-color', [
+          'match',
+          ['get', 'name'], // Match the 'name' property in the tileset
+          ...progressData.flatMap(({name, Progress, InGeoGuessr}) =>
+            InGeoGuessr === 1
+              ? [name, progressColors[Progress]] // Color based on progress
+              : []
+          ),
+          '#CCCCCC', // Default color if no match
+        ]);
+
+        // Set visibility based on InGeoGuessr
+        map.setFilter('centroids', ['==', ['get', 'InGeoGuessr'], 1]);
+      } else {
+        console.error("Layer 'centroids' not found in the style.");
       }
     });
   });
