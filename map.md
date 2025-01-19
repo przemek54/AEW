@@ -120,6 +120,7 @@ header:
       } else {
         console.error("Layer 'centroids' not found in the style.");
       }
+    }
 
     map.on('load', applyStyles);
     map.on('styledata', applyStyles);
