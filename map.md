@@ -60,7 +60,7 @@ header:
     }
 
     const progressColors = {
-      "not applicable": "#cccccc",
+      "not applicable": "#CCCCCC",
       "finished": "#9de3af",
       "outdated": "#c8e3cf",
       "in progress": "#eddf9a",
@@ -95,6 +95,10 @@ header:
       }
 
       if (map.getLayer('centroids')) {
+        console.log("Centroids layer found.");
+        // Log the centroids data
+        console.log("Centroids data:", progressData.filter(({InGeoGuessr}) => InGeoGuessr === 1));
+
         // Dynamically set paint properties for the centroids layer
         map.setPaintProperty('centroids', 'circle-color', [
           'match',
@@ -111,7 +115,8 @@ header:
         map.setFilter('centroids', ['==', ['get', 'InGeoGuessr'], 1]);
       } else {
         console.error("Layer 'centroids' not found in the style.");
-      }}
+      }
+    };
 
     map.on('load', applyStyles);
     map.on('styledata', applyStyles);
