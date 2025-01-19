@@ -112,10 +112,11 @@ header:
         ]);
 
         // Log the filter being applied
-        console.log("Applying filter to centroids layer:", ['in', ['get', 'name'], ...progressData.filter(({InGeoGuessr}) => InGeoGuessr === 1).map(({name}) => name)]);
+        const centroidNames = progressData.filter(({InGeoGuessr}) => InGeoGuessr === 1).map(({name}) => name);
+        console.log("Applying filter to centroids layer:", ['in', ['get', 'name'], ...centroidNames]);
 
         // Set visibility based on InGeoGuessr
-        map.setFilter('centroids', ['in', ['get', 'name'], ...progressData.filter(({InGeoGuessr}) => InGeoGuessr === 1).map(({name}) => name)]);
+        map.setFilter('centroids', ['in', ['get', 'name'], centroidNames]);
       } else {
         console.error("Layer 'centroids' not found in the style.");
       }
