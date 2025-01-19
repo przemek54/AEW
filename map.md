@@ -49,7 +49,7 @@ header:
     }
   }
 
-  mapboxgl.accessToken = 'sk.eyJ1IjoicHJ6ZW1lazU0IiwiYSI6ImNtNjM0NzB1NDE0azYya284ODFmeWd3ZTYifQ.5nGbNseYo2i6-ylOPoYjEg';
+  mapboxgl.accessToken = 'pk.eyJ1IjoicHJ6ZW1lazU0IiwiYSI6ImNtNjFwazRsMjA2OXkycXB1MnFlOG9sZGoifQ.jOXAGgTKRWsqxgFfPOR8uQ';
 
   const map = new mapboxgl.Map({
     container: 'map',
