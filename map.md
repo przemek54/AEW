@@ -12,33 +12,33 @@ header:
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
 
 <script>
-  mapboxgl.accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN';
+  mapboxgl.accessToken = 'pk.eyJ1IjoicHJ6ZW1lazU0IiwiYSI6ImNtNjFwazRsMjA2OXkycXB1MnFlOG9sZGoifQ.jOXAGgTKRWsqxgFfPOR8uQ';
 
   const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/your-style-id',
+    style: 'mapbox://styles/przemek54/cm62kpxxu003z01s73ogpap63',
     center: [0, 20],
-    zoom: 2,
+    zoom: 2
   });
 
-  // Dataset with progress info
+  // Dataset for countries and progress
   const progressData = [
     { name: "Afghanistan", InGeoGuessr: 0, Progress: "Not applicable" },
     { name: "Alaska", InGeoGuessr: 1, Progress: "Finished" },
-    { name: "Albania", InGeoGuessr: 1, Progress: "Not started" },
+    { name: "Albania", InGeoGuessr: 1, Progress: "Not started" }
   ];
 
   const progressColors = {
     "Not applicable": "#CCCCCC",
     "Finished": "#008000",
-    "Not started": "#FF0000",
+    "Not started": "#FF0000"
   };
 
   map.on('load', () => {
     // Check if the layer exists in the style
-    if (map.getLayer('countries')) {
+    if (map.getLayer('countries-2ebq5h')) {
       // Dynamically set paint properties for the layer
-      map.setPaintProperty('countries', 'fill-color', [
+      map.setPaintProperty('countries-2ebq5h', 'fill-color', [
         'match',
         ['get', 'name'], // Match the 'name' property in the tileset
         ...progressData.flatMap(({ name, Progress, InGeoGuessr }) =>
