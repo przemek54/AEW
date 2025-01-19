@@ -69,6 +69,23 @@ header:
       "Not started": "#FF0000"
     };
 
-    
+    map.on('load', () => {
+      // Check if the layer exists in the style
+      if (map.getLayer('countries-2ebq5h')) {
+        // Dynamically set paint properties for the layer
+        map.setPaintProperty('countries-2ebq5h', 'fill-color', [
+          'match',
+          ['get', 'name'], // Match the 'name' property in the tileset
+          ...progressData.flatMap(({ name, Progress, InGeoGuessr }) =>
+            InGeoGuessr === 0
+              ? [name, '#CCCCCC'] // Gray for 'InGeoGuessr: 0'
+              : [name, progressColors[Progress]]
+          ),
+          '#CCCCCC', // Default color if no match
+        ]);
+      } else {
+        console.error("Layer 'countries' not found in the style.");
+      }
+    });
   });
 </script>
