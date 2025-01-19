@@ -55,7 +55,7 @@ header:
     container: 'map',
     style: 'mapbox://styles/przemek54/cm62kpxxu003z01s73ogpap63',
     center: [0, 20],
-    zoom: 2
+    zoom: 1
   });
 
   const tsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQclsDyN6aq9eY0SYyKI4X66wXWT1eB5tfMgdBsTIKfI97QE4N9u-GOFY5u9T_tWgp2MvlaIPskmKnJ/pub?gid=1775399803&single=true&output=tsv';
@@ -69,23 +69,6 @@ header:
       "Not started": "#FF0000"
     };
 
-    map.on('load', () => {
-      // Check if the layer exists in the style
-      if (map.getLayer('countries')) {
-        // Dynamically set paint properties for the layer
-        map.setPaintProperty('countries', 'fill-color', [
-          'match',
-          ['get', 'name'], // Match the 'name' property in the tileset
-          ...progressData.flatMap(({ name, Progress, InGeoGuessr }) =>
-            InGeoGuessr === 0
-              ? [name, '#CCCCCC'] // Gray for 'InGeoGuessr: 0'
-              : [name, progressColors[Progress]]
-          ),
-          '#CCCCCC', // Default color if no match
-        ]);
-      } else {
-        console.error("Layer 'countries' not found in the style.");
-      }
-    });
+    
   });
 </script>
