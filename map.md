@@ -58,7 +58,7 @@ header:
     zoom: 2
   });
 
-  const tsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQclsDyN6aq9eY0SYyKI4X66wXWT1eB5tfMgdBsTIKfI97QE4N9u-GOFY5u9T_tWgp2MvlaIPskmKnJ/pub?gid=1775399803&single=true&output=tsv';
+  const tsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQclsDyN6aq9eY0SYyKI4X66wXWT1eB5tfMgdBsTIKfI97QE4N9u-GOFY5u9T_tWgp2MvlaIPskmKnJ/pub?gid=1775399803&single=true&output=tsv&fresh=' + new Date().getTime();
 
   fetchTsvData(tsvUrl).then(progressData => {
     if (!progressData) {
@@ -77,40 +77,40 @@ header:
     console.log(progressData);
 
     map.on('load', () => {
-      // Check if the layer exists in the style
-      if (map.getLayer('countries-2ebq5h')) {
-        // Dynamically set paint properties for the layer
-        map.setPaintProperty('countries-2ebq5h', 'fill-color', [
-          'match',
-          ['get', 'name'], // Match the 'name' property in the tileset
-          ...progressData.flatMap(({name, Progress, InGeoGuessr}) =>
-            InGeoGuessr === 0
-              ? [name, '#CCCCCC'] // Gray for 'InGeoGuessr: 0'
-              : [name, progressColors[Progress]]
-          ),
-          '#CCCCCC', // Default color if no match
-        ]);
-      } else {
-        console.error("Layer 'countries-2ebq5h' not found in the style.");
-      }
+      const applyStyles = () => {
+        if (map.getLayer('countries-2ebq5h')) {
+          map.setPaintProperty('countries-2ebq5h', 'fill-color', [
+            'match',
+            ['get', 'name'],
+            ...progressData.flatMap(({name, Progress, InGeoGuessr}) =>
+              InGeoGuessr === 0
+                ? [name, '#CCCCCC']
+                : [name, progressColors[Progress]]
+            ),
+            '#CCCCCC',
+          ]);
+        }
 
-      if (map.getLayer('centroids')) {
-        // Dynamically set paint properties for the centroids layer
-        map.setPaintProperty('centroids', 'circle-color', [
-          'match',
-          ['get', 'name'], // Match the 'name' property in the tileset
-          ...progressData.flatMap(({name, Progress, InGeoGuessr}) =>
-            InGeoGuessr === 1
-              ? [name, progressColors[Progress]] // Color based on progress
-              : []
-          ),
-          '#CCCCCC', // Default color if no match
-        ]);
+        if (map.getLayer('centroids')) {
+          map.setPaintProperty('centroids', 'circle-color', [
+            'match',
+            ['get', 'name'],
+            ...progressData.flatMap(({name, Progress, InGeoGuessr}) =>
+              InGeoGuessr === 1
+                ? [name, progressColors[Progress]]
+                : []
+            ),
+            '#CCCCCC',
+          ]);
 
-        // Set visibility based on InGeoGuessr
-        map.setFilter('centroids', ['==', ['get', 'InGeoGuessr'], 1]);
+          map.setFilter('centroids', ['==', ['get', 'InGeoGuessr'], 1]);
+        }
+      };
+
+      if (progressData) {
+        applyStyles();
       } else {
-        console.error("Layer 'centroids' not found in the style.");
+        console.error('No progress data available for styling.');
       }
     });
   });
