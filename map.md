@@ -12,7 +12,44 @@ header:
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
 
 <script>
-  mapboxgl.accessToken = 'pk.eyJ1IjoicHJ6ZW1lazU0IiwiYSI6ImNtNjFwazRsMjA2OXkycXB1MnFlOG9sZGoifQ.jOXAGgTKRWsqxgFfPOR8uQ';
+  function tsvToJson(tsv) {
+    const lines = tsv.trim().split('\n');
+    const headers = lines[0].split('\t');
+    const result = [];
+
+    for (let i = 1; i < lines.length; i++) {
+      const obj = {};
+      const currentLine = lines[i].split('\t');
+
+      headers.forEach((header, index) => {
+        obj[header] = currentLine[index];
+      });
+
+      // Convert InGeoGuessr, Locations, and Metas to integers
+      obj.InGeoGuessr = parseInt(obj.InGeoGuessr, 10);
+      obj.Locations = parseInt(obj.Locations, 10);
+      obj.Metas = parseInt(obj.Metas, 10);
+
+      result.push(obj);
+    }
+
+    return result;
+  }
+
+  async function fetchTsvData(url) {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const tsvData = await response.text();
+      return tsvToJson(tsvData);
+    } catch (error) {
+      console.error('Failed to fetch TSV data:', error);
+    }
+  }
+
+  mapboxgl.accessToken = 'sk.eyJ1IjoicHJ6ZW1lazU0IiwiYSI6ImNtNjM0NzB1NDE0azYya284ODFmeWd3ZTYifQ.5nGbNseYo2i6-ylOPoYjEg';
 
   const map = new mapboxgl.Map({
     container: 'map',
@@ -21,12 +58,12 @@ header:
     zoom: 2
   });
 
-  // Dataset for countries and progress
-  const progressData = [
-    { name: "Afghanistan", InGeoGuessr: 0, Progress: "Not applicable" },
-    { name: "Alaska", InGeoGuessr: 1, Progress: "Finished" },
-    { name: "Albania", InGeoGuessr: 1, Progress: "Not started" }
-  ];
+  const tsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQclsDyN6aq9eY0SYyKI4X66wXWT1eB5tfMgdBsTIKfI97QE4N9u-GOFY5u9T_tWgp2MvlaIPskmKnJ/pub?gid=1775399803&single=true&output=tsv';
+
+  fetchTsvData(tsvUrl).then(progressData => {
+    console.log(progressData);
+    // You can now use progressData to add markers or other elements to the map
+  });
 
   const progressColors = {
     "Not applicable": "#CCCCCC",
@@ -36,9 +73,9 @@ header:
 
   map.on('load', () => {
     // Check if the layer exists in the style
-    if (map.getLayer('countries-2ebq5h')) {
+    if (map.getLayer('countries')) {
       // Dynamically set paint properties for the layer
-      map.setPaintProperty('countries-2ebq5h', 'fill-color', [
+      map.setPaintProperty('countries', 'fill-color', [
         'match',
         ['get', 'name'], // Match the 'name' property in the tileset
         ...progressData.flatMap(({ name, Progress, InGeoGuessr }) =>
