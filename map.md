@@ -60,11 +60,11 @@ header:
     }
 
     const progressColors = {
-      "Not applicable": "#CCCCCC",
-      "Finished": "#9de3af",
-      "Outdated": "#c8e3cf",
-      "In progress": "#eddf9a",
-      "Not started": "#e39d9d"
+      "not applicable": "#cccccc",
+      "finished": "#9de3af",
+      "outdated": "#c8e3cf",
+      "in progress": "#eddf9a",
+      "not started": "#e39d9d"
     };
 
     console.log(progressData);
@@ -86,7 +86,7 @@ header:
           ...progressData.flatMap(({name, Progress, InGeoGuessr}) =>
             InGeoGuessr === 0
               ? [name, '#CCCCCC'] // Gray for 'InGeoGuessr: 0'
-              : [name, progressColors[Progress]]
+              : [name, progressColors[Progress.trim().toLowerCase()]]
           ),
           '#CCCCCC', // Default color if no match
         ]);
@@ -101,7 +101,7 @@ header:
           ['get', 'name'], // Match the 'name' property in the tileset
           ...progressData.flatMap(({name, Progress, InGeoGuessr}) =>
             InGeoGuessr === 1
-              ? [name, progressColors[Progress]] // Color based on progress
+              ? [name, progressColors[Progress.trim().toLowerCase()]] // Color based on progress
               : []
           ),
           '#CCCCCC', // Default color if no match
