@@ -102,7 +102,7 @@ header:
         // Dynamically set paint properties for the centroids layer
         map.setPaintProperty('centroids', 'circle-color', [
           'match',
-          ['get', 'name'], // Match the 'name' property in the tileset
+          ['get', 'join_name'], // Match the 'join_name' property in the tileset
           ...progressData.flatMap(({name, Progress, InGeoGuessr}) =>
             InGeoGuessr === 1
               ? [name, progressColors[Progress.trim().toLowerCase()]] // Color based on progress
@@ -113,10 +113,10 @@ header:
 
         // Log the filter being applied
         const centroidNames = progressData.filter(({InGeoGuessr}) => InGeoGuessr === 1).map(({name}) => name);
-        console.log("Applying filter to centroids layer:", ['in', ['get', 'name'], ["literal", centroidNames]]);
+        console.log("Applying filter to centroids layer:", ['in', ['get', 'join_name'], ["literal", centroidNames]]);
 
         // Set visibility based on InGeoGuessr
-        map.setFilter('centroids', ['in', ['get', 'name'], ["literal", centroidNames]]);
+        map.setFilter('centroids', ['in', ['get', 'join_name'], ["literal", centroidNames]]);
       } else {
         console.error("Layer 'centroids' not found in the style.");
       }
