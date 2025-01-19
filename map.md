@@ -22,7 +22,7 @@ header:
       const currentLine = lines[i].split('\t');
 
       headers.forEach((header, index) => {
-        obj[header] = currentLine[index];
+        obj[header.trim()] = currentLine[index].trim();
       });
 
       // Convert InGeoGuessr, Locations, and Metas to integers
@@ -62,31 +62,30 @@ header:
 
   fetchTsvData(tsvUrl).then(progressData => {
     console.log(progressData);
-    // You can now use progressData to add markers or other elements to the map
-  });
 
-  const progressColors = {
-    "Not applicable": "#CCCCCC",
-    "Finished": "#008000",
-    "Not started": "#FF0000"
-  };
+    const progressColors = {
+      "Not applicable": "#CCCCCC",
+      "Finished": "#008000",
+      "Not started": "#FF0000"
+    };
 
-  map.on('load', () => {
-    // Check if the layer exists in the style
-    if (map.getLayer('countries')) {
-      // Dynamically set paint properties for the layer
-      map.setPaintProperty('countries', 'fill-color', [
-        'match',
-        ['get', 'name'], // Match the 'name' property in the tileset
-        ...progressData.flatMap(({ name, Progress, InGeoGuessr }) =>
-          InGeoGuessr === 0
-            ? [name, '#CCCCCC'] // Gray for 'InGeoGuessr: 0'
-            : [name, progressColors[Progress]]
-        ),
-        '#CCCCCC', // Default color if no match
-      ]);
-    } else {
-      console.error("Layer 'countries' not found in the style.");
-    }
+    map.on('load', () => {
+      // Check if the layer exists in the style
+      if (map.getLayer('countries')) {
+        // Dynamically set paint properties for the layer
+        map.setPaintProperty('countries', 'fill-color', [
+          'match',
+          ['get', 'name'], // Match the 'name' property in the tileset
+          ...progressData.flatMap(({ name, Progress, InGeoGuessr }) =>
+            InGeoGuessr === 0
+              ? [name, '#CCCCCC'] // Gray for 'InGeoGuessr: 0'
+              : [name, progressColors[Progress]]
+          ),
+          '#CCCCCC', // Default color if no match
+        ]);
+      } else {
+        console.error("Layer 'countries' not found in the style.");
+      }
+    });
   });
 </script>
