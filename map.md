@@ -76,7 +76,7 @@ header:
       zoom: 2
     });
 
-    map.on('load', () => {
+    const applyStyles = () = {
       // Check if the layer exists in the style
       if (map.getLayer('countries-2ebq5h')) {
         // Dynamically set paint properties for the layer
@@ -111,7 +111,10 @@ header:
         map.setFilter('centroids', ['==', ['get', 'InGeoGuessr'], 1]);
       } else {
         console.error("Layer 'centroids' not found in the style.");
-      }
+      }}
+
+    map.on('load', () => {
+      applyStyles();
     });
   });
 </script>
