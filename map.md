@@ -73,10 +73,10 @@ header:
       container: 'map',
       style: 'mapbox://styles/przemek54/cm62kpxxu003z01s73ogpap63',
       center: [0, 20],
-      zoom: 0,
-      minZoom: 0, // Set the minimum zoom level
-      maxZoom: 2.5, // Set the maximum zoom level
-      maxBounds: [[-90, -45], [90, 45]]
+      zoom: 1,
+      minZoom: 1, // Set the minimum zoom level
+      maxZoom: 5, // Set the maximum zoom level
+      maxBounds: [[-180, -85], [180, 85]] // Set the geographical bounds
     });
 
     const applyStyles = () => {
