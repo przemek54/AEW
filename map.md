@@ -6,7 +6,7 @@ header:
   background: 'linear-gradient(135deg, rgb(34, 139, 87), rgb(139, 34, 139))'
 ---
 
-<div id="map" style="width: 100%; height: 600px;"></div>
+<div id="map" style="width: 100%; height: 500px;"></div>
 
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
@@ -62,7 +62,7 @@ header:
     const progressColors = {
       "not applicable": "#CCCCCC",
       "finished": "#70c286",
-      "outdated": "#c8e3cf",
+      "outdated": "#bcf0b6",
       "in progress": "#e3d981",
       "not started": "#db6969"
     };
@@ -73,10 +73,10 @@ header:
       container: 'map',
       style: 'mapbox://styles/przemek54/cm62kpxxu003z01s73ogpap63',
       center: [0, 20],
-      zoom: 1,
-      minZoom: 1, // Set the minimum zoom level
-      maxZoom: 5, // Set the maximum zoom level
-      maxBounds: [[-180, -90], [180, 90]]
+      zoom: 0.5,
+      minZoom: 0.5, // Set the minimum zoom level
+      maxZoom: 2.5, // Set the maximum zoom level
+      maxBounds: [[-90, -45], [90, 45]]
     });
 
     const applyStyles = () => {
