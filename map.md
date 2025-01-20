@@ -6,7 +6,7 @@ header:
   background: 'linear-gradient(135deg, rgb(34, 139, 87), rgb(139, 34, 139))'
 ---
 
-<div id="map" style="width: 800px; height: 600px;"></div>
+<div id="map" style="width: 100%; height: 600px;"></div>
 
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
@@ -73,10 +73,10 @@ header:
       container: 'map',
       style: 'mapbox://styles/przemek54/cm62kpxxu003z01s73ogpap63',
       center: [0, 20],
-      zoom: 1,
-      minZoom: 1, // Set the minimum zoom level
+      zoom: 0,
+      minZoom: 0, // Set the minimum zoom level
       maxZoom: 5, // Set the maximum zoom level
-      maxBounds: [[-150, -80], [150, 80]] // Set the geographical bounds
+      maxBounds: [[-240, -80], [240, 80]] // Set the geographical bounds to cover a wider area
     });
 
     const applyStyles = () => {
