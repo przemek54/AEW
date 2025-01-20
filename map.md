@@ -61,10 +61,10 @@ header:
 
     const progressColors = {
       "not applicable": "#CCCCCC",
-      "finished": "#9de3af",
+      "finished": "#70c286",
       "outdated": "#c8e3cf",
-      "in progress": "#eddf9a",
-      "not started": "#e39d9d"
+      "in progress": "#e3d981",
+      "not started": "#db6969"
     };
 
     console.log(progressData);
@@ -73,7 +73,9 @@ header:
       container: 'map',
       style: 'mapbox://styles/przemek54/cm62kpxxu003z01s73ogpap63',
       center: [0, 20],
-      zoom: 2
+      zoom: 1,
+      minZoom: 1, // Set the minimum zoom level
+      maxZoom: 10 // Set the maximum zoom level
     });
 
     const applyStyles = () => {
@@ -95,9 +97,7 @@ header:
       }
 
       if (map.getLayer('centroids')) {
-        console.log("Centroids layer found.");
         // Log the centroids data
-        console.log("Centroids data:", progressData.filter(({InGeoGuessr}) => InGeoGuessr === 1));
 
         // Dynamically set paint properties for the centroids layer
         map.setPaintProperty('centroids', 'circle-color', [
@@ -113,7 +113,6 @@ header:
 
         // Log the filter being applied
         const centroidNames = progressData.filter(({InGeoGuessr}) => InGeoGuessr === 1).map(({name}) => name);
-        console.log("Applying filter to centroids layer:", ['in', ['get', 'join_name'], ["literal", centroidNames]]);
 
         // Set visibility based on InGeoGuessr
         map.setFilter('centroids', ['in', ['get', 'join_name'], ["literal", centroidNames]]);
