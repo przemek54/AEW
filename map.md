@@ -72,8 +72,8 @@ header:
       container: 'map',
       style: 'mapbox://styles/przemek54/cm62kpxxu003z01s73ogpap63',
       center: [0, 20],
-      zoom: 0,
-      minZoom: 0, // Set the minimum zoom level
+      zoom: 0.5,
+      minZoom: 0.5, // Set the minimum zoom level
       maxZoom: 3, // Set the maximum zoom level
       maxBounds: [[-240, -80], [240, 80]] // Set the geographical bounds to cover a wider area
     });
