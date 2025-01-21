@@ -74,7 +74,8 @@ header:
       center: [0, 0],
       zoom: 0.75,
       maxZoom: 3, // Set the maximum zoom level
-      maxBounds: [[-240, -90], [240, 90]]
+      maxBounds: [[-180, -90], [180, 90]],
+      projection: 'naturalEarth'
     });
 
     const applyStyles = () => {
