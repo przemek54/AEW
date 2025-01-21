@@ -1,16 +1,16 @@
 header:
   - titles:
       en: Home
-    url: /index.html
+    url: /index
   - titles:
       en: Map
-    url: /map.html
+    url: /map
   - titles:
       en: Script
-    url: /script.html
+    url: /script
   - titles:
       en: FAQ
-    url: /faq.html
+    url: /faq
   - titles:
       en: About
-    url: /about.html
+    url: /about
