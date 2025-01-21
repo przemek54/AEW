@@ -74,8 +74,7 @@ header:
       center: [0, 0],
       zoom: 0.5,
       minZoom: 0.5, // Set the minimum zoom level
-      maxZoom: 3, // Set the maximum zoom level
-      maxBounds: [[-100, -50], [100, 50]] // Set the geographical bounds to cover a wider area
+      maxZoom: 3 // Set the maximum zoom level
     });
 
     const applyStyles = () => {
