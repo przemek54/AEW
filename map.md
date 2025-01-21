@@ -71,10 +71,11 @@ header:
     const map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/przemek54/cm62kpxxu003z01s73ogpap63',
-      center: [0, 0],
+      center: [0, 10],
       zoom: 0.75,
       minZoom: 0.75, // Set the minimum zoom level
-      maxZoom: 3 // Set the maximum zoom level
+      maxZoom: 3, // Set the maximum zoom level
+      maxBounds: [[-240, -80], [240, 800]] // Set the geographical bounds to cover a wider area
     });
 
     const applyStyles = () => {
