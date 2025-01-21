@@ -34,7 +34,7 @@ As of version 0.3.1, the map contains 2,325 locations across 1 continent. For mo
 **[Play the map here!](https://www.geoguessr.com/maps/66ca6b77095a4f41baf80ece)**
 
 ## Script
-<div style="display: flex; align-items: center;">
+<div style="display: flex; align-items: center; margin-bottom: 20px">
   <div style="flex: 1; margin-right: 20px">
     <p>AEW features a script that provides <b>real-time hints</b> for each location and it accounts for all clues visible to you. They are sorted by continent, country and region, so that you can view them at your own pace for narrowing down your guesses.</p>
   </div>
