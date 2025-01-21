@@ -73,9 +73,9 @@ header:
       style: 'mapbox://styles/przemek54/cm62kpxxu003z01s73ogpap63',
       center: [0, 0],
       zoom: 0.75,
+      minZoom: 0.75,
       maxZoom: 3, // Set the maximum zoom level
-      maxBounds: [[-120, -90], [120, 90]],
-      projection: 'naturalEarth'
+      maxBounds: [[-240, -90], [240, 90]]
     });
 
     const applyStyles = () => {
