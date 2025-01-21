@@ -34,13 +34,22 @@ As of version 0.3.1, the map contains 2,325 locations across 1 continent. For mo
 **[Play the map here!](https://www.geoguessr.com/maps/66ca6b77095a4f41baf80ece)**
 
 ## Script
-AEW features a script that provides **real-time hints** for each location and it accounts for all clues visible to you. They are sorted by continent, country and region, so that you can view them at your own pace for narrowing down your guesses.
-
-![Script functionality](https://raw.githubusercontent.com/przemek54/AEW/master/assets/gif-1.gif)
-
-The core functionality of the script is **Reveal Mode**, which allows you to show or hide place names and images for a more fun learning experience. It encourages you to think closely about the round before you're given the final answer.
-
-![Reveal Mode](https://raw.githubusercontent.com/przemek54/AEW/master/assets/gif-2.gif)
+<div style="display: flex; align-items: center;">
+  <div style="flex: 1; margin-right: 20px">
+    <p>AEW features a script that provides <b>real-time hints</b> for each location and it accounts for all clues visible to you. They are sorted by continent, country and region, so that you can view them at your own pace for narrowing down your guesses.</p>
+  </div>
+  <div style="flex: 1;">
+    <img src="https://raw.githubusercontent.com/przemek54/AEW/master/assets/gif-1.gif" alt="Script functionality" style="max-width: 100%;">
+  </div>
+</div>
+<div style="display: flex; align-items: center;">
+  <div style="flex: 1; margin-right: 20px">
+    <p>The core functionality of the script is <b>Reveal Mode</b>, which allows you to show or hide place names and images for a more fun learning experience. It encourages you to think closely about the round.</p>
+  </div>
+  <div style="flex: 1;">
+    <img src="https://raw.githubusercontent.com/przemek54/AEW/master/assets/gif-2.gif" alt="Reveal Mode" style="max-width: 100%;">
+  </div>
+</div>
 
 The script only works on AEW and **should only be used in NMPZ**. Moving breaks it completely because it can't fetch the correct location, and panning results in an incomplete experience because not all clues available to you are displayed as hints.
 
