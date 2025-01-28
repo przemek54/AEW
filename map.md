@@ -1,11 +1,26 @@
 ---
 layout: article
-title: Progress Map
+title: Map
+aside:
+  toc: true
 header:
   theme: dark
   background: 'linear-gradient(135deg, rgb(34, 139, 87), rgb(139, 34, 139))'
 ---
 <div id="map" style="width: 100%; height: 500px"></div>
+<select id="variable-select">
+  <option value="hdi">Progress</option>
+  <option value="gdp">Locations</option>
+  <option value="birthRate">Metas</option>
+</select>
+
+## About
+The goal of the map is to represent every clue on PlonkIt by at least 5 unique locations, with current progress shown on the map above. The vast majority of locations contain enough clues to identify the country. There are a couple that are more ambiguous, so you can expect to use your nogging every now and then.
+
+## Statistics
+As of the latest version, An Easy World 
+
+You can use the controls on the map to display the number of locations or PlonkIt metas per country.
 
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
@@ -39,10 +54,23 @@ header:
     try {
       const response = await fetch(url);
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error('Network error');
       }
       const tsvData = await response.text();
-      return tsvToJson(tsvData);
+      const progressData = tsvToJson(tsvData);
+
+      // Calculate max values for Locations and Metas
+      const maxLocations = Math.max(...progressData.map(item => item.Locations));
+      const maxMetas = Math.max(...progressData.map(item => item.Metas));
+
+      // Normalize Locations and Metas
+      progressData.forEach(item => {
+        item.NormalizedLocations = item.Locations / maxLocations;
+        item.NormalizedMetas = item.Metas / maxMetas;
+      });
+
+      console.log(progressData); // For debugging purposes
+      return progressData;
     } catch (error) {
       console.error('Failed to fetch TSV data:', error);
     }
@@ -78,11 +106,10 @@ header:
       maxBounds: [[-240, -80], [240, 80]] // Set the geographical bounds to cover a wider area
     });
 
-    const applyStyles = () => {
-      // Check if the layer exists in the style
-      if (map.getLayer('countries-2ebq5h')) {
+    const progressStyle = () => {
+      if (map.getLayer('countries')) {
         // Dynamically set paint properties for the layer
-        map.setPaintProperty('countries-2ebq5h', 'fill-color', [
+        map.setPaintProperty('countries', 'fill-color', [
           'match',
           ['get', 'name'], // Match the 'name' property in the tileset
           ...progressData.flatMap(({name, Progress, InGeoGuessr}) =>
@@ -93,12 +120,10 @@ header:
           '#CCCCCC', // Default color if no match
         ]);
       } else {
-        console.error("Layer 'countries-2ebq5h' not found in the style.");
+        console.error("Layer 'countries' not found in the style.");
       }
 
       if (map.getLayer('centroids')) {
-        // Log the centroids data
-
         // Dynamically set paint properties for the centroids layer
         map.setPaintProperty('centroids', 'circle-color', [
           'match',
@@ -110,8 +135,6 @@ header:
           ),
           '#CCCCCC', // Default color if no match
         ]);
-
-        // Log the filter being applied
         const centroidNames = progressData.filter(({InGeoGuessr}) => InGeoGuessr === 1).map(({name}) => name);
 
         // Set visibility based on InGeoGuessr
@@ -119,9 +142,13 @@ header:
       } else {
         console.error("Layer 'centroids' not found in the style.");
       }
+
+      if (map.getLayer('Locations')) {
+        map.setPaintProperty('Locations', )
+      }
     }
 
-    map.on('load', applyStyles);
-    map.on('styledata', applyStyles);
+    map.on('load', progressStyle);
+    map.on('styledata', progressStyle);
   });
 </script>
