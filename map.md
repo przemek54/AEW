@@ -9,7 +9,7 @@ header:
 ---
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
-<script type="module" src="_includes/scripts/map.js"></script>
+<script>{%- include scripts/map.js -%}</script>
 
 <div id="map" style="width: 100%; height: 500px"></div>
 <select id="js-variable-select">
