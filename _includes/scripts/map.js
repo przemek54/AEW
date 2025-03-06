@@ -1,4 +1,4 @@
-import { getColorForNormalizedLocation, whatFill } from "./utils/mapLayers.js";
+{%- include scripts/utils/mapLayers.js -%}
 
 function tsvToJson(tsv) {
   const lines = tsv.trim().split('\n');
