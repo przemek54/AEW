@@ -1,3 +1,5 @@
+import { getColorForNormalizedLocation, whatFill } from "./utils/mapLayers.js";
+
 function tsvToJson(tsv) {
   const lines = tsv.trim().split('\n');
   const headers = lines[0].split('\t');
@@ -76,100 +78,64 @@ fetchTsvData(tsvUrl).then(progressData => {
     projection: 'naturalEarth',
   });
 
-  const updateMapStyle = (variable) => {
-    // Countries
-    if (map.getLayer("countries")) {
-      let paintProperty;
-      switch (variable) {
-        case 'progress':
-          paintProperty = [
-            'match',
-            ['get', 'name'], // Match the 'name' property in the tileset
-            ...progressData.flatMap(({name, Progress, InGeoGuessr}) =>
-              [name, progressColors[Progress.trim().toLowerCase()]]
-            ),
-            '#CCCCCC', // Default color if no match
-          ];
-          break;
-        case 'locations':
-          paintProperty = [
-            'interpolate',
-            ['linear'],
-            ['get', 'name'],
-            0, '#f8d5cc',
-            0.5, '#f4bfb6',
-            1, '#f1a8a5'
-          ];
-          break;
-        case 'metas':
-          paintProperty = [
-            'interpolate',
-            ['linear'],
-            ['get', 'name'],
-            0, '#f8d5cc',
-            0.5, '#f4bfb6',
-            1, '#f1a8a5'
-          ];
-          break;
-        default:
-          paintProperty = ['#CCCCCC'];
+  function updateMapStyle(variable, layers) {
+    layers.forEach((layer) => {
+      if (map.getLayer(layer)) {
+        let paintProperty;
+        switch (variable) {
+          case 'progress':
+            paintProperty = [
+              'match',
+              ['get', 'name'], // Match the 'name' property in the tileset
+              ...progressData.flatMap(({name, Progress}) =>
+                [name, progressColors[Progress.trim().toLowerCase()]]
+              ),
+              '#CCCCCC', // Default color if no match
+            ];
+            break;
+          case 'locations':
+            paintProperty = [
+              'match',
+              ['get', 'name'],
+              ...progressData.flatMap(({name, NormalizedLocations}) => {
+                const color = getColorForNormalizedLocation([255, 255, 255], [166, 164, 63], NormalizedLocations);
+                return [name, color]
+              }),
+              '#CCCCCC', // Default color if no match
+            ];
+            break;
+          case 'metas':
+            paintProperty = [
+              'match',
+              ['get', 'name'],
+              ...progressData.flatMap(({name, NormalizedMetas}) => {
+                const color = getColorForNormalizedLocation([255, 255, 255], [143, 57, 57], NormalizedMetas);
+                return [name, color]
+              }),
+              '#CCCCCC', // Default color if no match
+            ];
+            break;
+          default:
+            paintProperty = ['#CCCCCC'];
+        };
+        map.setPaintProperty(layer, whatFill(layer), paintProperty);
+      } else {
+        console.error(`Layer '${layer}' not found in the style.`);
       };
-      map.setPaintProperty('countries', 'fill-color', paintProperty);
-    } else {
-      console.error("Layer 'countries' not found in the style.");
-    };
-
-    // Centroids
-    if (map.getLayer("centroids")) {
-      let paintProperty;
-      switch (variable) {
-        case 'progress':
-          paintProperty = [
-            'match',
-            ['get', 'name'], // Match the 'name' property in the tileset
-            ...progressData.flatMap(({name, Progress, InGeoGuessr}) =>
-              [name, progressColors[Progress.trim().toLowerCase()]]
-            ),
-            '#CCCCCC', // Default color if no match
-          ];
-          break;
-        case 'locations':
-          paintProperty = [
-            'interpolate',
-            ['linear'],
-            ['get', 'name'],
-            0, '#f8d5cc',
-            0.5, '#f4bfb6',
-            1, '#f1a8a5'
-          ];
-          break;
-        case 'metas':
-          paintProperty = [
-            'interpolate',
-            ['linear'],
-            ['get', 'name'],
-            0, '#f8d5cc',
-            0.5, '#f4bfb6',
-            1, '#f1a8a5'
-          ];
-          break;
-        default:
-          paintProperty = ['#CCCCCC'];
+      
+      if (layer === "centroids") {
+        const centroidNames = progressData.filter(({InGeoGuessr}) => InGeoGuessr === 1).map(({name}) => name);
+        map.setFilter(layer, ['in', ['get', 'name'], ["literal", centroidNames]]);
       };
-      map.setPaintProperty("centroids", 'circle-color', paintProperty);
-      const centroidNames = progressData.filter(({InGeoGuessr}) => InGeoGuessr === 1).map(({name}) => name);
-      map.setFilter('centroids', ['in', ['get', 'name'], ["literal", centroidNames]]);
-
-    } else {
-      console.error(`Layer 'centroids' not found in the style.`);
-    };
+    });
   };
   
-  document.getElementById('variable-select').addEventListener('change', (event) => {
-    updateMapStyle(event.target.value);
+  document.getElementById('js-variable-select').addEventListener('change', (event) => {
+    updateMapStyle(event.target.value, ["countries", "centroids"]);
   });
 
   map.on('load', () => {
-    updateMapStyle('progress');
+    document.getElementById('js-variable-select').value = 'progress';
+    updateMapStyle('progress', ["countries", "centroids"]);
   });
 });
