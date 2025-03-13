@@ -1,4 +1,4 @@
-{%- include scripts/utils/mapLayers.js -%}
+// {%- include scripts/utils/mapLayers.js -%}
 
 function tsvToJson(tsv) {
   const lines = tsv.trim().split('\n');
@@ -22,6 +22,21 @@ function tsvToJson(tsv) {
   }
 
   return result;
+}
+
+function animateCount(element, start, end, duration) {
+  let startTime = null;
+
+  function animation(currentTime) {
+    if (startTime === null) startTime = currentTime;
+    const progress = Math.min((currentTime - startTime) / duration, 1);
+    element.textContent = Math.floor(progress * (end - start) + start);
+    if (progress < 1) {
+      requestAnimationFrame(animation);
+    }
+  }
+
+  requestAnimationFrame(animation);
 }
 
 async function fetchTsvData(url) {
@@ -138,4 +153,9 @@ fetchTsvData(tsvUrl).then(progressData => {
     document.getElementById('js-variable-select').value = 'progress';
     updateMapStyle('progress', ["countries", "centroids"]);
   });
+
+  const totalLocations = progressData.reduce((acc, { Locations }) => acc + Locations, 0);
+  const locationCountElement = document.getElementById("js-location-count");
+
+  animateCount(locationCountElement, 0, totalLocations, 1500);
 });
