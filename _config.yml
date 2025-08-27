@@ -24,11 +24,13 @@ title   : An Easy World
 description: > # this means to ignore newlines until "Language & timezone"
   A GeoGuessr map designed for learning.
 
+mapbox_access_token: "MAPBOX_TOKEN_PLACEHOLDER"
+
 
 ## => Language and Timezone
 ##############################
 lang: en # the language of your site, default as "en"
-timezone: America/New_York # see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for the available values
+timezone: Europe/Warsaw # see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for the available values
 
 
 ## => Author and Social

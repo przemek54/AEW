@@ -1,5 +1,18 @@
 {%- include scripts/utils/mapLayers.js -%}
 
+/*<style>
+  .stats-popup {
+    max-width: 400px;
+    font:
+        12px/20px -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Helvetica,
+        Arial,
+        sans-serif;
+}
+</style>*/
+
 function tsvToJson(tsv) {
   const lines = tsv.trim().split('\n');
   const headers = lines[0].split('\t');
@@ -65,7 +78,7 @@ async function fetchTsvData(url) {
   }
 }
 
-mapboxgl.accessToken = 'pk.eyJ1IjoicHJ6ZW1lazU0IiwiYSI6ImNtNjFwazRsMjA2OXkycXB1MnFlOG9sZGoifQ.jOXAGgTKRWsqxgFfPOR8uQ';
+mapboxgl.accessToken = '{{ site.mapbox_access_token }}';
 
 const tsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQclsDyN6aq9eY0SYyKI4X66wXWT1eB5tfMgdBsTIKfI97QE4N9u-GOFY5u9T_tWgp2MvlaIPskmKnJ/pub?gid=1775399803&single=true&output=tsv';
 
@@ -85,12 +98,12 @@ fetchTsvData(tsvUrl).then(progressData => {
 
   const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/przemek54/cm62kpxxu003z01s73ogpap63/draft',
+    style: '/assets/map-style/progress(cm62kpxxu003z01s73ogpap63)/style.json',
     center: [0, 10],
     zoom: 0.75,
     minZoom: 0.75, // Set the minimum zoom level
     maxZoom: 3, // Set the maximum zoom level
-    projection: 'naturalEarth',
+    projection: 'naturalEarth'
   });
 
   function updateMapStyle(variable, layers) {
@@ -153,6 +166,15 @@ fetchTsvData(tsvUrl).then(progressData => {
     document.getElementById('js-variable-select').value = 'progress';
     updateMapStyle('progress', ["countries", "centroids"]);
   });
+
+  map.addInteraction('poi-click-interaction', {
+    type: 'click',
+    target: {featuresetId: 'clickable-countries'},
+    handler: (e) => {
+        // The properties defined in the selectors `properties` objects.
+        console.log("Country clicked!", e.feature.properties)
+    }
+});
 
   const totalLocations = progressData.reduce((acc, { Locations }) => acc + Locations, 0);
   const locationCountElement = document.getElementById("js-location-count");

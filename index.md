@@ -25,11 +25,9 @@ The goal of the map is to be:
 - **relaxing for advanced players**, who may use it for laid-back gameplay or solidifying their knowledge.
 
 ## Map
-An Easy World (AEW) serves as an unofficial extension of the **[PlonkIt guide](https://www.plonkit.net/)**, with every meta on the website being represented in the map by at least 5 locations. It is intended for **NMPZ**, but you can play it any way you like. Some locations might be too easy if you allow yourself to turn around.
+An Easy World (AEW) serves as an unofficial extension of the **[PlonkIt guide](https://www.plonkit.net/)**, with every meta on the website being represented in the map by at least 5 locations. It is intended for **NMPZ**. Of course you can play it any way you like, but some locations might be too easy if you allow yourself to zoom in or turn around. For map statistics and current progress, visit the [Map](map) page.
 
 ![Gameplay image](https://raw.githubusercontent.com/przemek54/AEW/master/assets/gameplay-image.png)
-
-As of version 0.3.1, the map contains 2,325 locations across 1 continent. For more detailed statistics and current progress, visit the Map page.
 
 **[Play the map here!](https://www.geoguessr.com/maps/66ca6b77095a4f41baf80ece)**
 
@@ -51,7 +49,7 @@ As of version 0.3.1, the map contains 2,325 locations across 1 continent. For mo
   </div>
 </div>
 
-The script only works on AEW and **should only be used in NMPZ**. Moving breaks it completely because it can't fetch the correct location, and panning results in an incomplete experience because not all clues available to you are displayed as hints.
+The script only works on AEW and **should only be used in NMPZ**. Moving breaks it completely because it can't fetch the correct location, and panning/zooming results in an incomplete experience because then not all clues available to you are displayed as hints. A lot of the locations have been carefully picked so that the player can't read a sign but can see its shape, for example.
 
 For a more detailed explanation of the script's functions, an installation guide and basic troubleshooting, go to the Script page. More technical information related to the script itself (public API, changelog) can be found in the **[GitHub repository](https://github.com/przemek54/an-easy-world)**. I encourage any feedback through issues or pull requests.
 

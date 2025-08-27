@@ -8,6 +8,7 @@
 *.swo
 *.log
 *.log.*
+_config.local.yml
 
 /.vscode/
 

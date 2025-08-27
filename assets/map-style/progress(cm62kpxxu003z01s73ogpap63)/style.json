@@ -1,0 +1,93 @@
+{
+    "version": 8,
+    "name": "progress",
+    "metadata": {
+        "mapbox:autocomposite": true,
+        "mapbox:thumb": "data:image/webp;base64,UklGRmIFAABXRUJQVlA4TFUFAAAvO8AOADXRzfY/kSTlH9ExNRVMQ3VPVfMxBdJVpeqqDDqMsca+COoYlpL4+YdhLMdwDO7fUSLHMbR1mMNiBjIXrTNnZndzOAyDE2BQBG3pKIyJZcL4H7n1QLBtO011w/xH4W7FISnupPAVd3f3CgTZttM2TzKDzMzMsP+NpSi7/xNgAymtAIhvAUG56AVn37X5zk1KmYIqUAMAaBUPNYUu7bXyVvdZOy2GIioR1Ah0haAgLgEcD4Cl0GYt891bIpoYABPpMsAoGJPEJASuj9wO7SO42fXaraB+kWoqsW9yTSPYUqShtm0jhUmtEKlYCIDd8zmk3vUGkXFMuxMnOh2foRBfKcSkJFrGuyFlS/eneZFaE9YauJ6UBp418K09/3y8H5oafQ/EAoS4WifQ0t8t073s3JddW8d1dJzHbilnbdvZcRxDHlk6rjEFqCIB8sxX23p2bMeyY9/dEvs26w61Lae5tUEa8g9EVTzwNjHPdD3s5ct6M6g3AntjNKV0dig3frJioQoggEKsQbulheV8BMB6SYGw7O7YD2N832zhnZbSQm1hshViA7BuSr1YdJy7McYT5n6sr8tcqBDQCkIftqLDUiNs8Nz3rbkxxrTCU6nvXaGQMgELKAEFMaIPn5wbz3h9u2KM+xMxKkAsJi1QJBK+Yhr+yd5pUDpOBSCIUhJPmg+J6ENjSlLGSiNaVwBGGjzLNX/yyQ+f/NyY+l+ECgEiuQJoJMgktGKiDzl7fUERagvJaiViYrZpVwXRYUxa62RQqKTyZssHn51QBIASApNKph0a6xtjscVETBrTADRxjGXXvrn7UD43Zl4qF5cqRCkABWNSb+OkAIoxjA6D8NgVlq5vCbzrbC1fq0tpVSWaEKmLBRdEOiGtok6cGNH+jX5w6vqXVd+zdQOLtTJ5qwhRRAqhmjgRUFRzzko7qz5w3anV4en7zWpWbQbuX2A/qCKa2KYRVxFPpaZDf8Yvekidn2icLa/LlaN/tzl/q/I3A2oCi1gAqWnAUf4AG2+dPG38NcBBAIXwIh40ialtUdEEFCFgigcmFkEhpnWVQIdpEYC0iNawNHA8ECGcIK5ULF1woce73/vtp2i9BfeoAhylJjSRTgCaYjBxRcO1p0976J04MRTbEWtHmRrg+pyF8dZEBUDCvOAIAtA78LHYnJgE4B3pthBLptWdrohJJwWQDmEFwJva42Qb5WiPN7FCGhNmnxVAMaaolCK1KANFoeCclRNR8LvspYl2w6nJFGktmH2exWg8ubfQAXCnmOnUYJtyd1oMHl3fNwFbJl6qQZq5X0mjUAe/dU/st4A+foNK0eq7zkVJEVo7bUzbKFxPvoZ/gXWVg3y+7Nxe9tPN/yk6OPqKYrh4bm44/eiQb8qZNWcpwkve0BmxLgLXy7/jVLVp1mRXmJ2jmiJw0Aij7ri9r8u2/TRrMkg3L6UIrgq/lkRgvBNe3m3yz172/iJOETjKw/84Vco1c0i6X2ntIaUpJl+/kGe7c3MocK9eJecsoEX4KFXN5Nwc+uuDTGB0IYFnkWvGfNbLVvZdyoRL3mt5LOWa8azXc36l4CygfyaBsEj5sMkPuHs9Ew7ePs9W3zpkNl9uzFgm4N7kXnhcXTPmOZ+nnAns+kbOze4LzlbPBnvl4qfcHJK+sHhfsf2QsoDWjL08N7mcPdFlnXNSsuBX0wu7jek4Drl6b5f2L2UgaPpvfLZmzJoMhLXrW5o9NwOts/LGy3ItN2uzJ3qss1WkD/U5G7KuF5zlmsnlW8ebQycDqF/kgdjOdh8yy/Z99YkgU2UBzlX2aT+T+fy5v/xMkwYA",
+        "mapbox:uiParadigm": "global",
+        "mapbox:sdk-support": {
+            "js": "3.9.0",
+            "android": "11.9.0",
+            "ios": "11.9.0"
+        },
+        "mapbox:groups": {},
+        "mapbox:uiExpandedImports": []
+    },
+    "center": [19.59779981100902, 2.0141499692575637],
+    "zoom": 1.485135248999172,
+    "bearing": 0,
+    "pitch": 0,
+    "sources": {
+        "composite": {
+            "url": "mapbox://przemek54.cmeld2c9g1ug61pk5q0fkuap4-8jjsu,przemek54.cm7idrdve01c81pt7w4n11zj0-62u6q",
+            "type": "vector"
+        }
+    },
+    "sprite": "mapbox://sprites/przemek54/cm62kpxxu003z01s73ogpap63/8cfd3drho5eet9n336g32nhhr",
+    "glyphs": "mapbox://fonts/mapbox/{fontstack}/{range}.pbf",
+    "projection": {"name": "naturalEarth"},
+    "featuresets": {
+        "clickable-countries": {
+            "selectors": [
+                {
+                    "layer": "countries"
+                },
+                {
+                    "layer": "centroids"
+                }
+            ]
+        }
+    },
+    "layers": [
+        {
+            "id": "countries",
+            "type": "fill",
+            "source": "composite",
+            "source-layer": "countries-v2",
+            "slot": "",
+            "layout": {},
+            "paint": {
+                "fill-color": "hsl(0, 0%, 79%)",
+                "fill-outline-color": "hsla(0, 0%, 0%, 0)"
+            }
+        },
+        {
+            "id": "borders",
+            "type": "line",
+            "metadata": {"mapbox:featureStateHandler": {}},
+            "source": "composite",
+            "source-layer": "countries-v2",
+            "slot": "",
+            "paint": {"line-color": "hsl(0, 1%, 65%)", "line-width": 0.75}
+        },
+        {
+            "id": "centroids",
+            "type": "circle",
+            "source": "composite",
+            "source-layer": "centroids-v2",
+            "layout": {},
+            "paint": {
+                "circle-color": "hsl(0, 0%, 79%)",
+                "circle-stroke-color": "hsl(0, 1%, 65%)",
+                "circle-stroke-width": 1,
+                "circle-radius": 3.5,
+                "circle-opacity": ["match", ["get", "SMALL"], [0], 0, 1],
+                "circle-stroke-opacity": [
+                    "case",
+                    ["==", ["get", "SMALL"], 0],
+                    0,
+                    ["==", ["get", "SMALL"], 0],
+                    1,
+                    1
+                ]
+            }
+        }
+    ],
+    "created": "2025-01-18T19:20:39.186Z",
+    "modified": "2025-08-21T14:11:13.139Z",
+    "id": "cm62kpxxu003z01s73ogpap63",
+    "owner": "przemek54",
+    "visibility": "public",
+    "protected": false,
+    "draft": false
+}
