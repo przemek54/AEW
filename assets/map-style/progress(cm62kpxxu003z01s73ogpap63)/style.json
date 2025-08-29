@@ -19,7 +19,7 @@
     "pitch": 0,
     "sources": {
         "composite": {
-            "url": "mapbox://przemek54.cmeld2c9g1ug61pk5q0fkuap4-8jjsu,przemek54.cm7idrdve01c81pt7w4n11zj0-62u6q",
+            "url": "mapbox://przemek54.cmeld2c9g1ug61pk5q0fkuap4-8jjsu,przemek54.cm7idrdve01c81pt7w4n11zj0-6d5kr",
             "type": "vector"
         }
     },
@@ -30,10 +30,18 @@
         "clickable-countries": {
             "selectors": [
                 {
-                    "layer": "countries"
+                    "layer": "countries",
+                    "properties": {
+                        "id": ["get", "id"],
+                        "name": ["get", "name"]
+                    }
                 },
                 {
-                    "layer": "centroids"
+                    "layer": "centroids",
+                    "properties": {
+                        "id": ["get", "id"],
+                        "name": ["get", "name"]
+                    }
                 }
             ]
         }

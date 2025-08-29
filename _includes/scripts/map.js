@@ -16,7 +16,7 @@
 function tsvToJson(tsv) {
   const lines = tsv.trim().split('\n');
   const headers = lines[0].split('\t');
-  const result = [];
+  const result = {};
 
   for (let i = 1; i < lines.length; i++) {
     const obj = {};
@@ -31,7 +31,7 @@ function tsvToJson(tsv) {
     obj.Locations = parseInt(obj.Locations, 10);
     obj.Metas = parseInt(obj.Metas, 10);
 
-    result.push(obj);
+    result[obj.id] = obj;
   }
 
   return result;
@@ -52,6 +52,20 @@ function animateCount(element, start, end, duration) {
   requestAnimationFrame(animation);
 }
 
+async function fetchCountryData() {
+  try {
+    const response = await fetch('https://raw.githubusercontent.com/przemek54/an-easy-world/main/data/country-data.json');
+    if (!response.ok) {
+      throw new Error('Network error');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Failed to fetch country data:', error);
+    return null;
+  }
+};
+const countryData = await fetchCountryData();
+
 async function fetchTsvData(url) {
   try {
     const response = await fetch(url);
@@ -62,11 +76,11 @@ async function fetchTsvData(url) {
     const progressData = tsvToJson(tsvData);
 
     // Calculate max values for Locations and Metas
-    const maxLocations = Math.max(...progressData.map(item => item.Locations));
-    const maxMetas = Math.max(...progressData.map(item => item.Metas));
+    const maxLocations = Math.max(...Object.values(progressData).map(item => item.Locations));
+    const maxMetas = Math.max(...Object.values(progressData).map(item => item.Metas));
 
-    // Normalize Locations and Metas
-    progressData.forEach(item => {
+    // Populate progressData
+    Object.values(progressData).forEach(item => {
       item.NormalizedLocations = item.Locations / maxLocations;
       item.NormalizedMetas = item.Metas / maxMetas;
     });
@@ -114,33 +128,38 @@ fetchTsvData(tsvUrl).then(progressData => {
           case 'progress':
             paintProperty = [
               'match',
-              ['get', 'name'], // Match the 'name' property in the tileset
-              ...progressData.flatMap(({name, Progress}) =>
-                [name, progressColors[Progress.trim().toLowerCase()]]
-              ),
-              '#CCCCCC', // Default color if no match
+              ['get', 'id'], // Match the 'id' property in the tileset
+              ...Object.keys(progressData).flatMap(id => [
+                id,
+                progressColors[progressData[id].Progress.trim().toLowerCase()]
+              ]),
+              '#CCCCCC' // Default color if no match
             ];
             break;
           case 'locations':
             paintProperty = [
               'match',
-              ['get', 'name'],
-              ...progressData.flatMap(({name, NormalizedLocations}) => {
-                const color = getColorForNormalizedLocation([255, 255, 255], [166, 164, 63], NormalizedLocations);
-                return [name, color]
-              }),
-              '#CCCCCC', // Default color if no match
+              ['get', 'id'],
+              ...Object.keys(progressData).flatMap(id => [
+                id,
+                progressData[id].InGeoGuessr === 0 
+                  ? '#CCCCCC' 
+                  : getColorForNormalizedLocation([255, 255, 255], [166, 164, 63], progressData[id].NormalizedLocations)
+              ]),
+              '#CCCCCC' // Default color if no match
             ];
             break;
           case 'metas':
             paintProperty = [
               'match',
-              ['get', 'name'],
-              ...progressData.flatMap(({name, NormalizedMetas}) => {
-                const color = getColorForNormalizedLocation([255, 255, 255], [143, 57, 57], NormalizedMetas);
-                return [name, color]
-              }),
-              '#CCCCCC', // Default color if no match
+              ['get', 'id'],
+              ...Object.keys(progressData).flatMap(id => [
+                id,
+                progressData[id].InGeoGuessr === 0 
+                  ? '#CCCCCC' 
+                  : getColorForNormalizedLocation([255, 255, 255], [143, 57, 57], progressData[id].NormalizedMetas)
+              ]),
+              '#CCCCCC' // Default color if no match
             ];
             break;
           default:
@@ -152,7 +171,7 @@ fetchTsvData(tsvUrl).then(progressData => {
       };
       
       if (layer === "centroids") {
-        const centroidNames = progressData.filter(({InGeoGuessr}) => InGeoGuessr === 1).map(({name}) => name);
+        const centroidNames = Object.values(progressData).filter(({InGeoGuessr}) => InGeoGuessr === 1).map(({name}) => name);
         map.setFilter(layer, ['in', ['get', 'name'], ["literal", centroidNames]]);
       };
     });
@@ -176,7 +195,7 @@ fetchTsvData(tsvUrl).then(progressData => {
     }
 });
 
-  const totalLocations = progressData.reduce((acc, { Locations }) => acc + Locations, 0);
+  const totalLocations = Object.values(progressData).reduce((acc, { Locations }) => acc + Locations, 0);
   const locationCountElement = document.getElementById("js-location-count");
 
   animateCount(locationCountElement, 0, totalLocations, 1500);
