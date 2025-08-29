@@ -5,9 +5,24 @@ header:
   theme: dark
   background: 'linear-gradient(135deg, rgb(34, 139, 87), rgb(139, 34, 139))'
 ---
+
+<style>
+    .mapboxgl-popup {
+    max-width: 400px;
+    font:
+        12px/20px -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Helvetica,
+        Arial,
+        sans-serif;
+}
+</style>
+
 <link href="https://api.mapbox.com/mapbox-gl-js/v3.9.0/mapbox-gl.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/gh/przemek54/flag-icons@v0.1.4/css/flag-icons.min.css" rel="stylesheet" />
 <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.0/mapbox-gl.js"></script>
-<script type="module">{%- include scripts/map.js -%}</script>
+<script type="module">{%- include scripts/map.js.liquid -%}</script>
 
 <div id="map" style="width: 100%; height: 500px"></div>
 <select id="js-variable-select">
