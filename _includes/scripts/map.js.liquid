@@ -81,7 +81,7 @@ async function fetchTsvData(url) {
   }
 }
 
-mapboxgl.accessToken = "{{ site.mapbox_access_token }}";
+mapboxgl.accessToken = "{{ process.env.MAPBOX_ACCESS_TOKEN }}";
 
 const tsvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQclsDyN6aq9eY0SYyKI4X66wXWT1eB5tfMgdBsTIKfI97QE4N9u-GOFY5u9T_tWgp2MvlaIPskmKnJ/pub?gid=1775399803&single=true&output=tsv";
 
