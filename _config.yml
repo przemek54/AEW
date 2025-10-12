@@ -24,7 +24,7 @@ title   : An Easy World
 description: > # this means to ignore newlines until "Language & timezone"
   A GeoGuessr map designed for learning.
 
-mapbox_access_token: ${MAPBOX_ACCESS_TOKEN}
+mapbox_access_token: "pk.eyJ1IjoicHJ6ZW1lazU0IiwiYSI6ImNtZXUxYzZ0ODAyYnYyanNkYWRsYTA2NmYifQ.2poJkKJqQNAG10FxaXUWSQ"
 
 
 ## => Language and Timezone
