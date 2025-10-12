@@ -95,7 +95,7 @@ fetchTsvData(tsvUrl).then(progressData => {
     "not applicable": "#CCCCCC",
     "finished": "#70c286",
     "outdated": "#bcf0b6",
-    "in progress": "#e3d981",
+    "upcoming": "#e3d981",
     "not started": "#db6969"
   };
 
@@ -131,8 +131,8 @@ fetchTsvData(tsvUrl).then(progressData => {
               ["get", "id"],
               ...Object.keys(progressData).flatMap(id => [
                 id,
-                progressData[id].InGeoGuessr === 0 
-                  ? "#CCCCCC" 
+                progressData[id].InGeoGuessr === 0
+                  ? "#CCCCCC"
                   : getColorForNormalizedLocation([255, 255, 255], [166, 164, 63], progressData[id].NormalizedLocations)
               ]),
               "#CCCCCC" // Default color if no match
@@ -144,8 +144,8 @@ fetchTsvData(tsvUrl).then(progressData => {
               ["get", "id"],
               ...Object.keys(progressData).flatMap(id => [
                 id,
-                progressData[id].InGeoGuessr === 0 
-                  ? "#CCCCCC" 
+                progressData[id].InGeoGuessr === 0
+                  ? "#CCCCCC"
                   : getColorForNormalizedLocation([255, 255, 255], [143, 57, 57], progressData[id].NormalizedMetas)
               ]),
               "#CCCCCC" // Default color if no match
@@ -158,14 +158,14 @@ fetchTsvData(tsvUrl).then(progressData => {
       } else {
         console.error(`Layer "${layer}" not found in the style.`);
       };
-      
+
       if (layer === "centroids") {
-        const centroidNames = Object.values(progressData).filter(({InGeoGuessr}) => InGeoGuessr === 1).map(({name}) => name);
+        const centroidNames = Object.values(progressData).filter(({ InGeoGuessr }) => InGeoGuessr === 1).map(({ name }) => name);
         map.setFilter(layer, ["in", ["get", "name"], ["literal", centroidNames]]);
       };
     });
   };
-  
+
   document.getElementById("js-variable-select").addEventListener("change", (event) => {
     updateMapStyle(event.target.value, ["countries", "centroids"]);
   });
@@ -177,28 +177,47 @@ fetchTsvData(tsvUrl).then(progressData => {
 
   map.addInteraction("poi-click-interaction", {
     type: "click",
-    target: {featuresetId: "clickable-countries"},
+    target: { featuresetId: "clickable-countries" },
     handler: (e) => {
-      const coordinates = JSON.stringify(e.lngLat);
-      console.log("Country clicked!", e.feature.properties.name);
-
-      function setPopupHTML(id) {
-        const countryName = progressData[id].name;
-        const countryFlag = `<span class="fi fi-${progressData[id].flagCode}" style="vertical-align: 0.25px; margin-right: 4px; margin-left: 4px"></span>`;
-
-        return `
-          <b>${countryName}</b> ${countryFlag}
-          <p>Progress: ${progressData[id].Progress}</p>
-          <p>Locations: ${progressData[id].Locations}</p>
-        `;
-      }
-
-      new mapboxgl.Popup()
-        .setLngLat(e.lngLat)
-        .setHTML(setPopupHTML(e.feature.properties.id))
-        .addTo(map);
+      setPanelHTML(e.feature.properties.id);
     }
-});
+  });
+
+  function setPanelHTML(id) {
+    const country = progressData[id];
+    const countryFlags = progressData[id].flagCode.split("-");
+    const flagSpan = countryFlags.map(flag => `<span class="fi fi-${flag}"></span>`).join("");
+    console.log(flagSpan);
+
+    const progressColor = progressColors[country.Progress.trim().toLowerCase()];
+    const panel = document.getElementById('country-panel');
+
+    if (!country.InGeoGuessr) {
+      panel.querySelector('.country-panel-content').innerHTML = `
+            <div class="country-header" style="border-top-color: ${progressColor}">
+                <b>${country.name}</b>
+                ${flagSpan}
+            </div>
+            <i>No Street View coverage.</i>
+        `;
+    } else {
+      panel.querySelector('.country-panel-content').innerHTML = `
+            <div class="country-header" style="border-top-color: ${progressColor}">
+                <b>${country.name}</b>
+                ${flagSpan}
+            </div>
+            <div class="country-stats">
+                <span class="country-stats-label">Progress:</span>
+                <span>${country.Progress}</span>
+                <span class="country-stats-label">Locations:</span>
+                <span>${country.Locations}</span>
+                <span class="country-stats-label">Metas:</span>
+                <span>${country.Metas}</span>
+            </div>
+        `;
+      panel.classList.remove('hidden');
+    }
+  };
 
   const totalLocations = Object.values(progressData).reduce((acc, { Locations }) => acc + Locations, 0);
   const locationCountElement = document.getElementById("js-location-count");

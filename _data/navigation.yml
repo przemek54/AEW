@@ -9,8 +9,5 @@ header:
       en: Script
     url: /script
   - titles:
-      en: FAQ
-    url: /faq
-  - titles:
-      en: About
-    url: /about
+      en: Updates
+    url: /updates
