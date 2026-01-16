@@ -15,7 +15,14 @@ With that out of the way, here is the changelog:
 </div>
 
 # Changelog
-The next update is going to be the Western European Update.
+The next update is going to be the Alpine Update.
+
+## [0.2.1] The Western European Update: 2026-01-16
+### Countries added
+- Germany
+- Netherlands
+- Luxembourg
+- Belgium
 
 ## [0.2.0] The Atlantic European Update: 2025-10-12
 ### Countries added
