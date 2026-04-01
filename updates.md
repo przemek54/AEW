@@ -15,7 +15,16 @@ With that out of the way, here is the changelog:
 </div>
 
 # Changelog
-The next update is going to be the Alpine Update.
+The next update is going to be the Visegrad Update.
+
+## [0.2.2] The Alpine Update: 2026-04-01
+### Countries added
+- Austria
+- Switzerland
+- Liechtenstein
+- Italy
+- San Marino
+- Slovenia
 
 ## [0.2.1] The Western European Update: 2026-01-16
 ### Countries added
