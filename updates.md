@@ -15,7 +15,14 @@ With that out of the way, here is the changelog:
 </div>
 
 # Changelog
-The next update is going to be the Visegrad Update.
+The next update is going to be the Baltic Update.
+
+## [0.2.3] The Visegrad Update: 2026-11-13
+### Countries added
+- Poland
+- Czechia
+- Slovakia
+- Hungary
 
 ## [0.2.2] The Alpine Update: 2026-04-01
 ### Countries added
